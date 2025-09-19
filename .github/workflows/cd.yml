@@ -1,0 +1,14 @@
+name: CD Pipeline (Trigger Jenkins)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Jenkins Job
+        run: |
+          echo "Jenkins build would be triggered here for branch $GITHUB_REF"
+          # curl -X POST --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }} "https://your-jenkins-url.com/job/Your-Job-Name/build"
