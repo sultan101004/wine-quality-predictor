@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wine Quality Predictor</title>
+</head>
+<body>
+    <h2>Wine Quality Prediction</h2>
+    <form action="{{ url_for('predict') }}" method="post">
+        {% for feature in ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar',
+                          'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density',
+                          'ph', 'sulphates', 'alcohol'] %}
+            <label for="{{ feature }}">{{ feature.replace('_', ' ').title() }}:</label>
+            <input type="number" step="any" name="{{ feature }}" required><br><br>
+        {% endfor %}
+        <button type="submit">Predict Quality</button>
+    </form>
+    <br>
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
