@@ -1,3 +1,4 @@
+# Test comment for PR workflow - MLOps Assignment
 from flask import Flask, render_template, request
 from app.predict import predict_wine_quality
 
