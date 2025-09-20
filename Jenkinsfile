@@ -1,8 +1,9 @@
 pipeline {
     agent any
     environment {
+        // Correct credentials syntax - use the ID you set in Jenkins
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials')
-        IMAGE_NAME = "sultan101004"
+        IMAGE_NAME = "sultan101004/wine-quality-predictor"  // Add repository name
         TAG = "latest"
     }
     stages {
@@ -17,7 +18,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('', 'docker-hub-credentials') {
+                    // Use the credentials variable correctly
+                    docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
                         docker.image("${IMAGE_NAME}:${TAG}").push()
                     }
                 }
